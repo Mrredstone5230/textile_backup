@@ -18,11 +18,11 @@
 
 package net.szum123321.textile_backup.core;
 
-import net.minecraft.network.MessageType;
+import net.minecraft.network.message.MessageType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.szum123321.textile_backup.TextileBackup;
@@ -50,12 +50,11 @@ public class Utilities {
 
 	public static void notifyPlayers(MinecraftServer server, UUID sender, String msg) {
 		MutableText message = log.getPrefixText();
-		message.append(new LiteralText(msg).formatted(Formatting.WHITE));
+		message.append(Text.literal(msg).formatted(Formatting.WHITE));
 
 		server.getPlayerManager().broadcast(
 				message,
-				MessageType.SYSTEM,
-				sender
+				MessageType.SYSTEM
 		);
 	}
 
